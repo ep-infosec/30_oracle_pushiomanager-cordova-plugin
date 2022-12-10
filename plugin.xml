@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-pushiomanager" version="6.53.0">
+    <name>PushIOManagerCordova</name>
+    <js-module name="PushIOManager" src="www/PushIOManager.js">
+        <clobbers target="PushIOManager" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="PushIOManagerPlugin">
+                <param name="android-package" value="com.pushio.manager.cordova.PushIOManagerPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+       <framework src="src/android/pushio.gradle" custom="true" type="gradleReference" />
+        <source-file src="src/android/PushIOManagerPlugin.java" target-dir="src/com/pushio/manager/cordova/" />
+        <source-file src="src/android/PushIOManagerPluginUtils.java" target-dir="src/com/pushio/manager/cordova/" />
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="PushIOManagerPlugin">
+                <param name="ios-package" value="PushIOManagerPlugin" onload="true" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/PushIOManagerPlugin.m" />
+        <header-file src="src/ios/AppDelegate+PushIOPlugin.h" />
+        <source-file src="src/ios/AppDelegate+PushIOPlugin.m" />
+        <header-file src="src/ios/NSArray+PIOConvert.h" />
+        <source-file src="src/ios/NSArray+PIOConvert.m" />
+        <header-file src="src/ios/NSDictionary+PIOConvert.h" />
+        <source-file src="src/ios/NSDictionary+PIOConvert.m" />
+        <framework src="./frameworks/PushIOManager.framework" custom="true" />
+    </platform>
+</plugin>
